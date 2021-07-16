@@ -37,9 +37,9 @@ endfunction
 " Apply the theme to all the group wich are differents than the ones in the
 " theme
 function! s:SyncTheme(current_theme) abort
-  let mismatches = filter(copy(g:Colorscheme), "a:curent_theme[v:key] !=# v:val")
+  let mismatches = filter(copy(g:Colorscheme), "a:current_theme[v:key] !=# v:val")
   call map(copy(mismatches), "execute('highlight' . ' ' . v:key . ' ' . 'NONE')")
-  call map(copy(mismatches), "s:Set(v:key, v:val)")
+  call map(copy(mismatches), "s:SetThemeFowGroup(v:key, v:val)")
 endfunction
 
 " Clear all the groups that aren't set by the theme
@@ -50,9 +50,9 @@ endfunction
 
 " Syncronyze the theme
 function! kaivim#Sync()
-  let colors = {}
-  call map(s:GetHighlights(), "extend(colors, s:GetCurrentTheme(v:val))")
+  let theme = {}
+  call map(s:GetHighlights(), "extend(theme, s:GetCurrentTheme(v:val))")
 
-  call s:SyncTheme(colors)
-  call s:ClearUndefinedGroups(colors)
+  call s:SyncTheme(theme)
+  call s:ClearUndefined(theme)
 endfunction
