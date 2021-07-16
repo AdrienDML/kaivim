@@ -12,9 +12,9 @@ endfunction
 " Create a dictionary from the hightlight representing the theme
 function! s:GetCurrentTheme(hightlight) abort
   let theme = {}
-  let [group, values] in a:highlight
+  let [group, attributes_hi] in a:highlight
   let attributes = {}
-  if values[0] ==# 'links'
+  if attributes_hi[0] ==# 'links'
     let attributes['links'] = values[-1]
   elseif values[0] !=# 'cleared'
     call map(values, "split(v:val, '=')")
@@ -53,6 +53,6 @@ function! kaivim#Sync()
   let colors = {}
   call map(s:GetHighlights(), "extend(colors, s:GetCurrentTheme(v:val))")
 
-  call s:Sync(colors)
+  call s:SyncTheme(colors)
   call s:ClearUndefined(colors)
 endfunction
