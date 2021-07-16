@@ -30,7 +30,7 @@ endif
  
 
 " Definition of the color theme
-let g:Colorscheme =
+let g:Colorscheme = {
   \ 'Normal'        : { 'guifg' : s:white},
   \ 'Comment'       : { 'guifg' : s:grey},
   \ 'Constant'      : { 'guifg' : s:violet},
