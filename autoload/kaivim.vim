@@ -54,5 +54,5 @@ function! kaivim#Sync()
   call map(s:GetHighlights(), "extend(colors, s:GetCurrentTheme(v:val))")
 
   call s:SyncTheme(colors)
-  call s:ClearUndefined(colors)
+  call s:ClearUndefinedGroups(colors)
 endfunction
