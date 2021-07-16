@@ -21,7 +21,7 @@ function! s:GetCurrentTheme(hightlight) abort
     call map(attributes_hi, "{v:val[0]: v:val[1]}")
     call map(attributes_hi, "extend(attributes, v:val)")
   endif
-  return (group : attibutes)
+  return {group : attibutes}
 endfunction
 
 " Apply the theme for a given group considering potential link
