@@ -1,6 +1,6 @@
 " Get all the highlights and put them in an array of the form 
 " [[group, [attributes]]]
-function s:GetHighlights() abort
+function! s:GetHighlights() abort
     let highlights  = execute('highlight') 
     let highlights  = substitute(highlights, '\n\s\+', ' ', 'g')
     let highlights  = split(highlights, '\n')
@@ -12,7 +12,7 @@ endfunction
 " Create a dictionary from the hightlight representing the theme
 function! s:GetCurrentTheme() abort
   let theme = {}
-  for [group, values] in <SID>GetHighlights()
+  for [group, values] in s:GetHighlights()
     let attributes = {}
     if values[0] ==# 'links'
       let attributes['links'] = values[-1]
@@ -39,11 +39,9 @@ endfunction
 " Apply the theme to all the group wich are differents than the ones in the
 " theme
 function! s:SyncTheme(current_theme) abort
-  for [group, attributes] in items(g:Colorscheme)
-    if attributes !=# a:current_theme[group]
-      call <SID>SetColors({group: attributes})
-    endif
-  endfor
+  let mismatches = filter(copy(g:Colorscheme), "a:colors[v:key] !=# v:val")
+  call map(copy(mismatches), "execute('highlight' . ' ' . v:key . ' ' . 'NONE')")
+  call map(copy(mismatches), "s:Set(v:key, v:val)")
 endfunction
 
 " Clear all the groups that aren't set by the theme
@@ -54,7 +52,7 @@ endfunction
 
 " Syncronyze the theme
 function! kaivim#Sync()
-  let current_theme = <SID>GetCurrentTheme()
-  call <SID>SyncTheme(current_theme)
-  call <SID>ClearUndefinedGroups(current_theme)
+  let current_theme = s:GetCurrentTheme()
+  call s:SyncTheme(current_theme)
+  call s:ClearUndefinedGroups(current_theme)
 endfunction

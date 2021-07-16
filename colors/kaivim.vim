@@ -45,16 +45,16 @@ let g:Colorscheme =
   \ 'Type'          : { 'guifg' : s:blue},
   \ 'Number'        : { 'guifg' : s:violet},
   \ 'Delimiter'     : { 'guifg' : s:white},
-\}
+  \}
 
 call kaivim#Sync()
 
 
-augroup kaivim
+augroup Kaivim
   autocmd!
   autocmd Syntax * call kaivim#Sync()
   autocmd Colorscheme *
     \ if g:colors_name !=# 'kaivim'
-    \ | autocmd! kaivim 
+    \ | autocmd! Kaivim 
     \ | endif
 augroup END
