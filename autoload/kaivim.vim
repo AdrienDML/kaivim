@@ -15,11 +15,11 @@ function! s:GetCurrentTheme(hightlight) abort
   let [group, attributes_hi] in a:highlight
   let attributes = {}
   if attributes_hi[0] ==# 'links'
-    let attributes['links'] = values[-1]
+    let attributes['links'] = attributes_hi[-1]
   elseif values[0] !=# 'cleared'
-    call map(values, "split(v:val, '=')")
-    call map(values, "{v:val[0]: v:val[1]}")
-    call map(values, "extend(attributes, v:val)")
+    call map(attributes_hi, "split(v:val, '=')")
+    call map(attributes_hi, "{v:val[0]: v:val[1]}")
+    call map(attributes_hi, "extend(attributes, v:val)")
   endif
   return (group : attibutes)
 endfunction
