@@ -24,13 +24,27 @@ elseif &background ==# 'dark'
 endif
 
 " Change the backgroun to none for transparent theme
-if &transparent
+if g:transparent
   let s:Background = NONE
 endif
+ 
 
 " Definition of the color theme
 let g:Theme = {
-\
+  \ 'Normal'        : { 'guifg' : s:white},
+  \ 'Comment'       : { 'guifg' : s:brightblack},
+  \ 'Constant'      : { 'guifg' : s:violet},
+  \ 'PreProc'       : { 'guifg' : s:dimmedwhite},
+  \ 'String'        : { 'guifg' : s:yellow},
+  \ 'Statement'     : { 'guifg' : s:red},
+  \ 'Keyword'       : { 'guifg' : s:red},
+  \ 'Boolean'       : { 'guifg' : s:violet},
+  \ 'Todo'          : { 'guifg' : s:orange},
+  \ 'Function'      : { 'guifg' : s:green},
+  \ 'Operator'      : { 'guifg' : s:red},
+  \ 'Type'          : { 'guifg' : s:blue},
+  \ 'Number'        : { 'guifg' : s:violet},
+  \ 'Delimiter'     : { 'guifg' : s:white},
 \}
 
 call kaivim#Sync()

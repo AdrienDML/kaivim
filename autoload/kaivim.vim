@@ -48,7 +48,7 @@ endfunction
 
 " Clear all the groups that aren't set by the theme
 function! s:ClearUndefinedGroups(colors) abort
-  let undefined_groups = filter(keys(a:colors), "!has_key(g:Colorscheme, v:val)")
+  let undefined_groups = filter(keys(a:colors), "!has_key(g:Theme, v:val)")
   call map(undefined_groups, "execute('highlight' . ' ' . v:val . ' ' . 'NONE')")
 endfunction
 
