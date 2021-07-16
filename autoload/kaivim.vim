@@ -10,20 +10,18 @@ function! s:GetHighlights() abort
 endfunction
 
 " Create a dictionary from the hightlight representing the theme
-function! s:GetCurrentTheme() abort
+function! s:GetCurrentTheme(hightlight) abort
   let theme = {}
-  for [group, values] in s:GetHighlights()
-    let attributes = {}
-    if values[0] ==# 'links'
-      let attributes['links'] = values[-1]
-    elseif values[0] !=# 'cleared'
-      call map(values, "split(v:val, '=')")
-      call map(values, "{v:val[0]: v:val[1]}")
-      call map(values, "extend(attributes, v:val)")
-    endif
-    let theme[group] = attributes
-  endfor
-  return theme
+  let [group, values] in a:highlight
+  let attributes = {}
+  if values[0] ==# 'links'
+    let attributes['links'] = values[-1]
+  elseif values[0] !=# 'cleared'
+    call map(values, "split(v:val, '=')")
+    call map(values, "{v:val[0]: v:val[1]}")
+    call map(values, "extend(attributes, v:val)")
+  endif
+  return (group : attibutes)
 endfunction
 
 " Apply the theme for a given group considering potential link
@@ -52,7 +50,9 @@ endfunction
 
 " Syncronyze the theme
 function! kaivim#Sync()
-  let current_theme = s:GetCurrentTheme()
-  call s:SyncTheme(current_theme)
-  call s:ClearUndefinedGroups(current_theme)
+  let colors = {}
+  call map(s:GetHighlights(), "extend(colors, s:GetCurrentTheme(v:val))")
+
+  call s:Sync(colors)
+  call s:ClearUndefined(colors)
 endfunction
