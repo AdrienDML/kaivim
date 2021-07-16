@@ -1,4 +1,4 @@
-# kiavim
+# kaivim
 A theme based on the monokai theme.
 
 ## Implementation
