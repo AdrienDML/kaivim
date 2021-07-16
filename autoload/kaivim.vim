@@ -37,7 +37,7 @@ endfunction
 " Apply the theme to all the group wich are differents than the ones in the
 " theme
 function! s:SyncTheme(current_theme) abort
-  let mismatches = filter(copy(g:Colorscheme), "a:colors[v:key] !=# v:val")
+  let mismatches = filter(copy(g:Colorscheme), "a:curent_theme[v:key] !=# v:val")
   call map(copy(mismatches), "execute('highlight' . ' ' . v:key . ' ' . 'NONE')")
   call map(copy(mismatches), "s:Set(v:key, v:val)")
 endfunction
