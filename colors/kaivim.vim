@@ -25,16 +25,16 @@ endif
 
 " Change the backgroun to none for transparent theme
 if g:transparent
-  let s:Background = NONE
+  let s:Background = 'NONE'
 endif
  
 
 " Definition of the color theme
 let g:Theme = {
   \ 'Normal'        : { 'guifg' : s:white},
-  \ 'Comment'       : { 'guifg' : s:brightblack},
+  \ 'Comment'       : { 'guifg' : s:grey},
   \ 'Constant'      : { 'guifg' : s:violet},
-  \ 'PreProc'       : { 'guifg' : s:dimmedwhite},
+  \ 'PreProc'       : { 'guifg' : s:white},
   \ 'String'        : { 'guifg' : s:yellow},
   \ 'Statement'     : { 'guifg' : s:red},
   \ 'Keyword'       : { 'guifg' : s:red},
