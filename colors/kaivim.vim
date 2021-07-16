@@ -33,7 +33,6 @@ endif
 let g:Colorscheme = {
   \ 'Normal'        : { 'guifg' : s:white},
   \ 'Comment'       : { 'guifg' : s:grey},
-  \ 'Constant'      : { 'guifg' : s:violet},
   \ 'PreProc'       : { 'guifg' : s:white},
   \ 'String'        : { 'guifg' : s:yellow},
   \ 'Statement'     : { 'guifg' : s:red},
