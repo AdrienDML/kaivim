@@ -10,7 +10,7 @@ let s:cyan    = "#a1efe4"
 let s:blue    = "#66d9ef"
 let s:violet  = "#ae81ff"
 let s:magenta = "#fd5ff0"
-let s:yelow   = "#e6db74"
+let s:yellow   = "#e6db74"
 let s:orange  = "#fd971f"
 let s:grey    = "#75715e"
 
@@ -30,7 +30,7 @@ endif
  
 
 " Definition of the color theme
-let g:Theme = {
+let g:Colorscheme =
   \ 'Normal'        : { 'guifg' : s:white},
   \ 'Comment'       : { 'guifg' : s:grey},
   \ 'Constant'      : { 'guifg' : s:violet},

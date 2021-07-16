@@ -39,7 +39,7 @@ endfunction
 " Apply the theme to all the group wich are differents than the ones in the
 " theme
 function! s:SyncTheme(current_theme) abort
-  for [group, attributes] in items(g:Theme)
+  for [group, attributes] in items(g:Colorscheme)
     if attributes !=# a:current_theme[group]
       call <SID>SetColors({group: attributes})
     endif
@@ -48,7 +48,7 @@ endfunction
 
 " Clear all the groups that aren't set by the theme
 function! s:ClearUndefinedGroups(colors) abort
-  let undefined_groups = filter(keys(a:colors), "!has_key(g:Theme, v:val)")
+  let undefined_groups = filter(keys(a:colors), "!has_key(g:Colorscheme, v:val)")
   call map(undefined_groups, "execute('highlight' . ' ' . v:val . ' ' . 'NONE')")
 endfunction
 
